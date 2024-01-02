@@ -12,10 +12,11 @@ api = StwHasApiClient(secrets["username"], secrets["password"])
 
 testtoken = secrets["testtoken"]
 
-#api.login()
+api.login()
 
 end = datetime.now()
-start = end - timedelta(days=2)
+start = end - timedelta(days=1)
 
 #eexdata = api.eexData(start, end, StwhasInterval.Hour, token=testtoken)
-meterdata = api.smartMeterData(start, end, secrets["meternumber"], StwhasInterval.Minute, token=testtoken)
+meterdata = api.smartMeterData(start, end, secrets["meternumber"], StwhasInterval.Hour)
+print(meterdata)
