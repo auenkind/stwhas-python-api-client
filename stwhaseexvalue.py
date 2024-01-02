@@ -8,12 +8,11 @@ class StwHasEexValue:
     def __init__(self, jsonData = None):
         if jsonData != None:
             self.parse(jsonData)
-        pass
 
     def fromJson(data):
         return StwHasEexValue(data)
     
     def parse(self, jsonData):
-        self.datetime = datetime.fromisoformat(jsonData['datetime'], )
+        self.datetime = datetime.fromisoformat(jsonData['datetime'])
         self.price = jsonData['price']
         self.interpolated = jsonData['interpolated']
