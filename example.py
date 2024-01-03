@@ -1,8 +1,7 @@
 from datetime import datetime
 from datetime import timedelta
 import json
-from stwhasapiclient import StwHasApiClient, StwhasInterval
-
+from src.stwhas_api_client import StwHasApiClient, StwhasInterval
 
 secrets = None
 with open("secrets.json", "rt", encoding="utf-8") as sf:

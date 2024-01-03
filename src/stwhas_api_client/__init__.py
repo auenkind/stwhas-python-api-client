@@ -1,8 +1,7 @@
 from datetime import datetime
-import json
-from stwhasinterval import StwhasInterval
-from stwhaseexdata import StwHasEexData
-from stwhassmartmeterdata import StwHasSmartMeterData
+from .stwhasinterval import StwhasInterval
+from .stwhaseexdata import StwHasEexData
+from .stwhassmartmeterdata import StwHasSmartMeterData
 import requests
 
 class StwHasApiClient:
@@ -20,7 +19,7 @@ class StwHasApiClient:
         data = requests.post(self.endpoint + 'auth/v1/customer/login', json=loginData)
         if data.status_code == 200:
             self.token = data.json()["token"]
-        print(self.token)
+        return self.token
 
     def eexData(self, starttime:datetime, endtime:datetime, interval:StwhasInterval, token = None):
         url = "{endpoint}stockmarket/v1/mapped-values/startdate/{startdate}Z/enddate/{enddate}Z/interval/{interval}".format(

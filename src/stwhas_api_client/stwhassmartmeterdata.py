@@ -1,7 +1,7 @@
-from stwhaseexvalue import StwHasEexValue
+from .stwhassmartmetervalue import StwHasSmartMeterValue
 
-class StwHasEexData:
-    data:list[StwHasEexValue] = []
+class StwHasSmartMeterData:
+    data:list[StwHasSmartMeterValue] = []
     unit = ""
 
     def __init__(self, jsonData = None):
@@ -10,11 +10,13 @@ class StwHasEexData:
         pass
 
     def fromJson(data):
-        return StwHasEexData(data)
+        return StwHasSmartMeterData(data)
     
     def parse(self, jsonData):
         if jsonData["values"] is None:
             raise Exception("Invalid data")
         self.unit = jsonData['unit']
         for value in jsonData["values"]:
-            self.data.append(StwHasEexValue.fromJson(value))
+            data = StwHasSmartMeterValue.fromJson(value)
+            if data.deliverySum > 0:
+                self.data.append(data)
