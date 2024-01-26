@@ -1,7 +1,7 @@
 from datetime import datetime
 
 class StwHasSmartMeterValue:
-    datetime:datetime = None
+    time:datetime = None
     deliveryA:float = 0.0
     deliveryB:float = 0.0
     deliveryMetercountA:float = 0.0
@@ -24,6 +24,6 @@ class StwHasSmartMeterValue:
         return StwHasSmartMeterValue(data)
     
     def parse(self, jsonData):
-        self.datetime = datetime.fromisoformat(jsonData['datetime'])
+        self.time = datetime.fromisoformat(jsonData['datetime'])
         for v in [a for a in dir(self) if not a.startswith('__') and a != 'datetime' and not callable(getattr(self, a))]:
             setattr(self, v, jsonData[v])

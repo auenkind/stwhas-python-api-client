@@ -1,7 +1,7 @@
 from datetime import datetime
 
 class StwHasEexValue:
-    datetime:datetime = None
+    time:datetime = None
     price:float = 0.0
     interpolated:bool = False
 
@@ -13,6 +13,6 @@ class StwHasEexValue:
         return StwHasEexValue(data)
     
     def parse(self, jsonData):
-        self.datetime = datetime.fromisoformat(jsonData['datetime'])
+        self.time = datetime.fromisoformat(jsonData['datetime'])
         self.price = jsonData['price']
         self.interpolated = jsonData['interpolated']
