@@ -25,5 +25,5 @@ class StwHasSmartMeterValue:
     
     def parse(self, jsonData):
         self.time = datetime.fromisoformat(jsonData['datetime'])
-        for v in [a for a in dir(self) if not a.startswith('__') and a != 'datetime' and not callable(getattr(self, a))]:
+        for v in [a for a in dir(self) if not a.startswith('__') and a != 'datetime' and a != 'time' and not callable(getattr(self, a))]:
             setattr(self, v, jsonData[v])
