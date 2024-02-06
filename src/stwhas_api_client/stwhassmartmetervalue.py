@@ -1,4 +1,5 @@
 from datetime import datetime
+from pytz import timezone
 
 class StwHasSmartMeterValue:
     time:datetime = None
@@ -25,5 +26,7 @@ class StwHasSmartMeterValue:
     
     def parse(self, jsonData):
         self.time = datetime.fromisoformat(jsonData['datetime'])
+        self.time = self.time.replace(tzinfo=None)
+        self.time = timezone("Europe/Berlin").localize(self.time)
         for v in [a for a in dir(self) if not a.startswith('__') and a != 'datetime' and a != 'time' and not callable(getattr(self, a))]:
             setattr(self, v, jsonData[v])

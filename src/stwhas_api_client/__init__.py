@@ -34,6 +34,8 @@ class StwHasApiClient:
         return StwHasEexData.fromJson(data)
 
     def smartMeterData(self, starttime:datetime, endtime:datetime, meternumber:str, interval:StwhasInterval, token = None) -> StwHasSmartMeterData:
+        starttime = starttime.replace(tzinfo=timezone("UTC"))
+        endtime = endtime.replace(tzinfo=timezone("UTC"))
         url = "{endpoint}meter/v1/meters/number/{meternumber}/mapped-values/startdate/{startdate}/enddate/{enddate}/interval/{interval}".format(
             endpoint=self.endpoint, 
             startdate=starttime.isoformat(), 

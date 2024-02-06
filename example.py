@@ -17,11 +17,8 @@ testtoken = secrets["testtoken"]
 
 api.login()
 
-ber = timezone("Europe/Berlin")
-
 end = datetime.now().date()
 end = datetime(end.year, end.month, end.day)
-end = ber.localize(end)
 start = end - timedelta(days=1)
 
 #eexdata = api.eexData(start, end, StwhasInterval.Hour, token=testtoken)
