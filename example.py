@@ -1,10 +1,11 @@
-from datetime import datetime, timezone
+from datetime import datetime, tzinfo
 from datetime import timedelta
+from pytz import timezone
 import json
 from src.stwhas_api_client import StwHasApiClient, StwhasInterval, StwhasUnit
 import os, time
 
-print(datetime.now(timezone.utc).astimezone().tzinfo)
+#print(datetime.now(timezone.utc).astimezone().tzinfo)
 
 secrets = None
 with open("secrets.json", "rt", encoding="utf-8") as sf:
@@ -16,8 +17,11 @@ testtoken = secrets["testtoken"]
 
 api.login()
 
-end = datetime.utcnow().date()
-end = datetime(end.year, end.month, end.day, tzinfo=timezone.utc)
+ber = timezone("Europe/Berlin")
+
+end = datetime.now().date()
+end = datetime(end.year, end.month, end.day)
+end = ber.localize(end)
 start = end - timedelta(days=1)
 
 #eexdata = api.eexData(start, end, StwhasInterval.Hour, token=testtoken)

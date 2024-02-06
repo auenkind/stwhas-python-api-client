@@ -5,6 +5,7 @@ from .stwhaseexdata import StwHasEexData
 from .stwhassmartmeterdata import StwHasSmartMeterData
 from .stwhasconsumptioncost import StwHasConsumptionCost
 import requests
+from pytz import timezone
 
 class StwHasApiClient:
     def __init__(self, username, password, endpoint= 'https://hassfurt.energy-assistant.de/api/') -> None:
@@ -44,7 +45,12 @@ class StwHasApiClient:
     
     # https://hassfurt.energy-assistant.de/api/widget/v1/display/5f3540c8894abb001b7c7f1a/unit/euro/startdate/2023-01-30T00:00:00.000Z/enddate/2023-01-31T00:00:00.000Z/interval/hour/?flow=delivery&dateFormat=HH:00&format=json
     def consumptionCost(self, starttime:datetime, endtime:datetime, interval:StwhasInterval, unit:StwhasUnit, token = None) -> StwHasConsumptionCost:
-        url = "{endpoint}widget/v1/display/5f3540c8894abb001b7c7f1a/unit/{unit}/startdate/{startdate}/enddate/{enddate}/interval/{interval}?flow=delivery&dateFormat=YYYY-MM-DD%20HH:00:00&format=json".format(
+        starttime = starttime.replace(tzinfo=None)
+        endtime = endtime.replace(tzinfo=None)
+        utc = timezone("UTC")
+        starttime = utc.localize(starttime)
+        endtime = utc.localize(endtime)
+        url = "{endpoint}widget/v1/display/5f3540c8894abb001b7c7f1a/unit/{unit}/startdate/{startdate}/enddate/{enddate}/interval/{interval}?flow=delivery&dateFormat=YYYY-MM-DDTHH:00:00&format=json".format(
             endpoint=self.endpoint, 
             startdate=starttime.isoformat(), 
             enddate=endtime.isoformat(), 

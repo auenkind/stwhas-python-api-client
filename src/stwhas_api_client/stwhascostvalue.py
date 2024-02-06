@@ -1,6 +1,8 @@
 from datetime import datetime, timezone
 from .stwhasinterval import StwhasInterval
 
+from pytz import timezone
+
 class StwHasCostValue:
     time:datetime = None
     interval:StwhasInterval = StwhasInterval.Hour
@@ -20,7 +22,8 @@ class StwHasCostValue:
     
     def parse(self, jsonData):
         self.time = datetime.fromisoformat(jsonData['datetime'])
-        self.time = self.time.replace(tzinfo=datetime.now(timezone.utc).astimezone().tzinfo)
+        ber = timezone('Europe/Berlin')
+        self.time = ber.localize(self.time)
         for v in [a for a in dir(self) if not a.startswith('__') and a != 'datetime' and a != 'time' and a != 'interval' and not callable(getattr(self, a))]:
             try:
                 setattr(self, v, jsonData[v])
