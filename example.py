@@ -21,10 +21,10 @@ end = datetime.now().date()
 end = datetime(end.year, end.month, end.day)
 start = end - timedelta(days=1)
 
-#eexdata = api.eexData(start, end, StwhasInterval.Hour, token=testtoken)
+#eexdata = api.eexData(start, end, StwhasInterval.Hour)
 #meterdata = api.smartMeterData(start, end, secrets["meternumber"], StwhasInterval.Hour)
 #print(meterdata)
 
-cost = api.consumptionCost(start, end, StwhasInterval.Hour, StwhasUnit.Kwh)
+cost = api.consumptionCost(start, end, StwhasInterval.Hour, StwhasUnit.Eur)
 for row in cost.data:
     print(f"{row.time} {row.workprice} {row.sum} {row.delivery}")

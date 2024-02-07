@@ -5,11 +5,9 @@ import os, time, datetime
 from datetime import datetime, timezone
 
 class StwHasConsumptionCost:
-    data:list[StwHasCostValue] = []
-    unit:StwhasUnit = None
-
     def __init__(self, jsonData = None, unit:StwhasUnit = None, interval:StwhasInterval = None):
-        self.unit = unit
+        self.data:list[StwHasCostValue] = []
+        self.unit:StwhasUnit = unit
         if jsonData != None:
             self.parse(jsonData, interval)
         pass

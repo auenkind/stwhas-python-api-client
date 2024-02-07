@@ -1,11 +1,11 @@
 from datetime import datetime
 
 class StwHasEexValue:
-    time:datetime = None
-    price:float = 0.0
-    interpolated:bool = False
 
     def __init__(self, jsonData = None):
+        self.time:datetime = None
+        self.price:float = 0.0
+        self.interpolated:bool = False
         if jsonData != None:
             self.parse(jsonData)
 

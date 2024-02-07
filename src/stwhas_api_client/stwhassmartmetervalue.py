@@ -2,22 +2,23 @@ from datetime import datetime
 from pytz import timezone
 
 class StwHasSmartMeterValue:
-    time:datetime = None
-    deliveryA:float = 0.0
-    deliveryB:float = 0.0
-    deliveryMetercountA:float = 0.0
-    deliveryMetercountB:float = 0.0
-    deliveryMetercountSum:float = 0.0
-    deliverySum:float = 0.0
-    feedA:float = 0.0
-    feedB:float = 0.0
-    feedMetercountA:float = 0.0
-    feedMetercountB:float = 0.0
-    feedMetercountSum:float = 0.0
-    feedSum:float = 0.0
-    interpolated:bool = False
 
     def __init__(self, jsonData = None):
+        self.time:datetime = None
+        self.deliveryA:float = 0.0
+        self.deliveryB:float = 0.0
+        self.deliveryMetercountA:float = 0.0
+        self.deliveryMetercountB:float = 0.0
+        self.deliveryMetercountSum:float = 0.0
+        self.deliverySum:float = 0.0
+        self.feedA:float = 0.0
+        self.feedB:float = 0.0
+        self.feedMetercountA:float = 0.0
+        self.feedMetercountB:float = 0.0
+        self.feedMetercountSum:float = 0.0
+        self.feedSum:float = 0.0
+        self.interpolated:bool = False
+
         if jsonData != None:
             self.parse(jsonData)
 

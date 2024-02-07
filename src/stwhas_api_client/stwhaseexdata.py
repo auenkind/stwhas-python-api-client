@@ -1,10 +1,10 @@
 from .stwhaseexvalue import StwHasEexValue
 
 class StwHasEexData:
-    data:list[StwHasEexValue] = []
-    unit = ""
 
     def __init__(self, jsonData = None):
+        self.data:list[StwHasEexValue] = []
+        self.unit = ""
         if jsonData != None:
             self.parse(jsonData)
         pass

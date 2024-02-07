@@ -1,10 +1,9 @@
 from .stwhassmartmetervalue import StwHasSmartMeterValue
 
 class StwHasSmartMeterData:
-    data:list[StwHasSmartMeterValue] = []
-    unit = ""
-
     def __init__(self, jsonData = None):
+        self.data:list[StwHasSmartMeterValue] = []
+        self.unit = ""
         if jsonData != None:
             self.parse(jsonData)
         pass
